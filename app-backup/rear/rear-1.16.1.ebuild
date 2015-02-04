@@ -1,8 +1,10 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI="5"
+
+inherit eutils
 
 DESCRIPTION="Fully automated disaster recovery supporting a broad variety of backup strategies and scenarios"
 HOMEPAGE="http://relax-and-recover.org/"
@@ -13,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="udev"
 
-RDEPEND="net-dialup/mingetty
+RDEPEND="dev-libs/openssl
+	net-dialup/mingetty
 	net-fs/nfs-utils
 	sys-apps/iproute2
 	sys-apps/lsb-release
@@ -23,7 +26,6 @@ RDEPEND="net-dialup/mingetty
 	sys-boot/syslinux
 	virtual/cdrtools
 	udev? ( virtual/udev )
-	dev-libs/openssl
 "
 
 src_prepare () {
@@ -35,10 +37,10 @@ src_compile () {
 }
 
 src_install () {
-	# deploy udev USB rule and udev will autostart ReaR workflows in case a USB
+	# Deploy udev USB rule and udev will autostart ReaR workflows in case a USB
 	# drive with the label 'REAR_000' is connected, which in turn is the
 	# default label when running the `rear format` command.
-	if use udev; then
+	if use udev ; then
 		insinto /lib/udev/rules.d
 		doins etc/udev/rules.d/62-${PN}-usb.rules
 	fi
@@ -55,4 +57,3 @@ src_install () {
 	insinto /usr/share/
 	doins -r usr/share/${PN}/
 }
-
