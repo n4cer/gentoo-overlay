@@ -17,16 +17,14 @@ SLOT="$(get_version_component_range 1-2)"
 IUSE=""
 RESTRICT="mirror"
 
-DEPEND=">=virtual/jdk-1.6
-       "
+DEPEND=">=virtual/jdk-1.6"
 
-RDEPEND=">=virtual/jre-1.6
-        "
+RDEPEND=">=virtual/jre-1.6"
 
 S="${WORKDIR}/activator-${PV}"
 
 pkg_setup() {
-    enewgroup playdevelopers
+	enewgroup playdevelopers
 }
 
 src_install() {
@@ -34,10 +32,10 @@ src_install() {
 	cp -a "${S}/" "${D}/opt/" || die
 
 	fowners -R root:playdevelopers "/opt/activator-${PV}"
-    find "${D}/opt/activator-${PV}" -type d -print0 | xargs -0 chmod 0770
+	find "${D}/opt/activator-${PV}" -type d -print0 | xargs -0 chmod 0770
 	find "${D}/opt/activator-${PV}" -type f -perm /111 -print0 | xargs -0 chmod 0770
-    find "${D}/opt/activator-${PV}" -type f ! -perm /111 -print0 | xargs -0 chmod 0660
+	find "${D}/opt/activator-${PV}" -type f ! -perm /111 -print0 | xargs -0 chmod 0660
 
-    make_wrapper "activator" "/opt/activator-${PV}/activator"
-    elog "You must be in the playdevelopers group to use Play2 framework."
+	make_wrapper "activator" "/opt/activator-${PV}/activator"
+	elog "You must be in the playdevelopers group to use Play2 framework."
 }
