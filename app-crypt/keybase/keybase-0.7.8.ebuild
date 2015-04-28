@@ -16,18 +16,16 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=""
-RDEPEND="${DEPEND}
-	>=net-libs/nodejs-0.10.30
+RDEPEND=">=net-libs/nodejs-0.10.30
 	>=app-crypt/gnupg-2.0.26-r3"
 
-src_unpack() {
-	unpack "${P}.tar.gz"
-	mv "node-client-${PV}" "${P}"
-}
+S=${WORKDIR}/node-client-${PV}
+
+src_compile() { :; }
 
 src_install() {
 	insinto "/opt/${PN}"
-	doins -r . || die
-	chmod +x "${D}/opt/keybase/bin/main.js" || die
+	doins -r .
+	fperms +x "/opt/${PN}/bin/main.js"
 	make_wrapper keybase ./main.js /opt/keybase/bin
 }
