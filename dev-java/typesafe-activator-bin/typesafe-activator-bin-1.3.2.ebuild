@@ -29,12 +29,12 @@ pkg_setup() {
 
 src_install() {
 	dodir "/opt"
-	cp -a "${S}/" "${D}/opt/" || die
+	cp -a "${S}/" "${D}/opt/"
 
 	fowners -R root:playdevelopers "/opt/activator-${PV}"
-	find "${D}/opt/activator-${PV}" -type d -print0 | xargs -0 chmod 0770
-	find "${D}/opt/activator-${PV}" -type f -perm /111 -print0 | xargs -0 chmod 0770
-	find "${D}/opt/activator-${PV}" -type f ! -perm /111 -print0 | xargs -0 chmod 0660
+	find "/opt/activator-${PV}" -type d -print0 | xargs -0 fperms 0770
+	find "/opt/activator-${PV}" -type f -perm /111 -print0 | xargs -0 fperms 0770
+	find "/opt/activator-${PV}" -type f ! -perm /111 -print0 | xargs -0 fperms 0660
 
 	make_wrapper "activator" "/opt/activator-${PV}/activator"
 	elog "You must be in the playdevelopers group to use Play2 framework."
