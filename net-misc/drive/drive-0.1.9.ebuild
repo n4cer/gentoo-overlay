@@ -14,11 +14,16 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=">=dev-lang/go-1.2
-		dev-vcs/git"
+		dev-vcs/git
+		dev-vcs/mercurial"
 RDEPEND=""
 
 src_prepare() {
 	export GOPATH="${PWD}"
+	
+	#mkdir -p src/github.com/odeke-em/drive/
+	#ln -s ../../../../config src/github.com/odeke-em/drive/config
+	#ln -s ../../../../src src/github.com/odeke-em/drive/src
 
 	go get github.com/odeke-em/drive/cmd/drive
 	go get github.com/odeke-em/drive/config
