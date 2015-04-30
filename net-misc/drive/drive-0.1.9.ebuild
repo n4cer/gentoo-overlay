@@ -21,12 +21,18 @@ RDEPEND=""
 src_prepare() {
 	export GOPATH="${PWD}"
 	
-	#mkdir -p src/github.com/odeke-em/drive/
-	#ln -s ../../../../config src/github.com/odeke-em/drive/config
-	#ln -s ../../../../src src/github.com/odeke-em/drive/src
+	mkdir -p src/github.com/odeke-em/drive/
+	ln -s ../../../../config src/github.com/odeke-em/drive/config
+	ln -s ../../../../src src/github.com/odeke-em/drive/src
 
-	go get github.com/odeke-em/drive/cmd/drive
-	go get github.com/odeke-em/drive/config
+	go get code.google.com/p/goauth2/oauth
+	go get github.com/cheggaaa/pb
+	go get github.com/mattn/go-isatty
+	go get github.com/odeke-em/cli-spinner
+	go get github.com/odeke-em/google-api-go-client/drive/v2
+	go get github.com/odeke-em/log
+	go get github.com/odeke-em/statos
+	go get github.com/odeke-em/xon/pkger/src
 	go get github.com/rakyll/command
 }
 
@@ -36,5 +42,6 @@ src_compile() {
 }
 
 src_install() {
-	dobin "bin/${PN}"
+	dodoc README.md
+	dobin "cmd/drive/${PN}"
 }
