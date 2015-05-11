@@ -25,19 +25,21 @@ src_unpack() {
 	unpack ${A}	
 	if use minimal ; then
 		mv "${WORKDIR}/activator-${PV}-minimal" "${S}"
+	else
+		mv "${WORKDIR}/activator-${PV}" "${S}"
 	fi
 }
 
 pkg_setup() {
-	enewgroup playdevelopers
+	enewgroup typesafedevelopers
 }
 
 src_install() {
 	dodir "/opt"
 	cp -a "${S}/" "${D}/opt/${PN}"
 
-	fowners -R root:playdevelopers /opt/${PN}
+	fowners -R root:typesafedevelopers /opt/${PN}
 	fperms 0770 /opt/${PN}/activator
 	make_wrapper "activator" "/opt/${PN}/activator"
-	elog "You must be in the playdevelopers group to use Play2 framework."
+	elog "You must be in the typesafedevelopers group to use typesafe-activator."
 }
