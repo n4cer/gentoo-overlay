@@ -39,7 +39,7 @@ src_install() {
 	cp -a "${S}/" "${D}/opt/${PN}"
 
 	fowners -R root:typesafedevelopers /opt/${PN}
-	fperms 0770 /opt/${PN}/activator
+	fperms -R 770 /opt/${PN}
 	make_wrapper "activator" "/opt/${PN}/activator"
 	elog "You must be in the typesafedevelopers group to use typesafe-activator."
 }
