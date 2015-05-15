@@ -22,7 +22,7 @@ DEPEND=">=virtual/jdk-1.6"
 RDEPEND=">=virtual/jre-1.6"
 
 src_unpack() {
-	unpack ${A}	
+	unpack ${A}
 	if use minimal ; then
 		mv "${WORKDIR}/activator-${PV}-minimal" "${S}"
 	else
