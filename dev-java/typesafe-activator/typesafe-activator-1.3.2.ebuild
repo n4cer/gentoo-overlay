@@ -21,11 +21,14 @@ DEPEND=">=virtual/jdk-1.6"
 
 RDEPEND=">=virtual/jre-1.6"
 
-if use minimal ; then
-	S="${WORKDIR}/activator-${PV}-minimal"
-else
-	S="${WORKDIR}/activator-${PV}"
-fi
+src_unpack() {
+	unpack ${A}
+	if use minimal ; then
+		mv "${WORKDIR}/activator-${PV}-minimal" "${S}"
+	else
+		mv "${WORKDIR}/activator-${PV}" "${S}"
+	fi
+}
 
 pkg_setup() {
 	enewgroup typesafedevelopers
