@@ -20,20 +20,17 @@ RDEPEND=""
 
 src_prepare() {
 	export GOPATH="${PWD}"
-	
-	mkdir -p src/github.com/odeke-em/drive/
-	ln -s ../../../../config src/github.com/odeke-em/drive/config
-	ln -s ../../../../src src/github.com/odeke-em/drive/src
 
-	go get code.google.com/p/goauth2/oauth
-	go get github.com/cheggaaa/pb
-	go get github.com/mattn/go-isatty
-	go get github.com/odeke-em/cli-spinner
-	go get github.com/odeke-em/google-api-go-client/drive/v2
-	go get github.com/odeke-em/log
-	go get github.com/odeke-em/statos
-	go get github.com/odeke-em/xon/pkger/src
-	go get github.com/rakyll/command
+	ln -s ../drive-gen/Godeps/_workspace/src/github.com/ src/
+	ln -s ../drive-gen/Godeps/_workspace/src/golang.org/ src/
+	ln -s ../drive-gen/Godeps/_workspace/src/google.golang.org/ src/
+
+	mkdir -p src/github.com/odeke-em/drive/
+	ln -s ../../../../../../../config src/github.com/odeke-em/drive/config
+	ln -s ../../../../../../../src src/github.com/odeke-em/drive/src
+	ln -s ../../../../../../../gen src/github.com/odeke-em/drive/gen
+
+	go get github.com/odeke-em/command
 }
 
 src_compile() {
