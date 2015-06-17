@@ -14,6 +14,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=">=dev-lang/go-1.2
+		dev-go/go-text
 		dev-vcs/git
 		dev-vcs/mercurial"
 RDEPEND=""
