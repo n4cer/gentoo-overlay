@@ -26,7 +26,7 @@ src_unpack() {
 	if use minimal ; then
 		mv "${WORKDIR}/activator-${PV}-minimal" "${S}"
 	else
-		mv "${WORKDIR}/activator-${PV}" "${S}"
+		mv "${WORKDIR}/activator-dist-${PV}" "${S}"
 	fi
 }
 
