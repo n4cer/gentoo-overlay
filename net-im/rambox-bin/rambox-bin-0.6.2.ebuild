@@ -1,12 +1,12 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
 inherit eutils gnome2-utils xdg
 DESCRIPTION="Free, Open Source and Cross Platform messaging and emailing app"
 HOMEPAGE="http://rambox.pro/"
-SRC_URI="https://github.com/saenzramiro/rambox/releases/download/${PV}/Rambox-${PV}-x64.tar.gz
-	x86? ( https://github.com/saenzramiro/rambox/releases/download/${PV}/Rambox-${PV}-ia32.tar.gz )"
+SRC_URI="https://github.com/saenzramiro/rambox/releases/download/${PV}/Rambox-${PV}-linux-x64.tar.gz
+	x86? ( https://github.com/saenzramiro/rambox/releases/download/${PV}/Rambox-${PV}-linux-ia32.tar.gz )"
 RESTRICT="mirror"
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
@@ -27,7 +27,15 @@ RDEPEND="dev-libs/expat
 	x11-libs/libxcb
 	x11-libs/libXtst"
 
-S=${WORKDIR}/Rambox-${PV}
+src_unpack() {
+	unpack ${A}
+	if use x86; then
+	    S="${WORKDIR}/Rambox-${PV}-linux-ia32"
+    else
+	    S="${WORKDIR}/Rambox-${PV}-linux-x64"
+    fi
+}
+
 src_install() {
 	local destdir="/opt/${PN}"
 	insinto $destdir
