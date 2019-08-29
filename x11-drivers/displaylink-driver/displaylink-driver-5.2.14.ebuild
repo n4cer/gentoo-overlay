@@ -25,7 +25,7 @@ RDEPEND=">=sys-devel/gcc-4.8.3
 	!systemd? ( sys-power/pm-utils )"
 
 pkg_nofetch() {
-	einfo "Please download DisplayLink USB Graphics Software for Ubuntu 5.1.zip from"
+	einfo "Please download DisplayLink USB Graphics Software for Ubuntu 5.2.zip from"
 	einfo "http://www.displaylink.com/downloads/ubuntu"
 	einfo "and rename it to ${P}.zip"
 }
