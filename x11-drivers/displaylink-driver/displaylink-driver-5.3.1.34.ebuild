@@ -19,7 +19,7 @@ RESTRICT="fetch"
 
 DEPEND="app-admin/chrpath"
 RDEPEND=">=sys-devel/gcc-4.8.3
-	=x11-drivers/evdi-1.7*
+	>=x11-drivers/evdi-1.7.0
 	virtual/libusb:1
 	|| ( x11-drivers/xf86-video-modesetting >=x11-base/xorg-server-1.17.0 )
 	!systemd? ( sys-power/pm-utils )"
